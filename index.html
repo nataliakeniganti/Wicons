@@ -1,5 +1,6 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Wicons</title><style>
+<title>Wicons</title>
+<style>
 :root{--bg:#fff;--fg:#14161a;--mut:#6b7280;--bd:#e5e7eb;--ac:#2f6bff;--chip:#f1f3f6;--chipsel:#d9e6ff}
 @media(prefers-color-scheme:dark){:root{--bg:#1b1b1b;--fg:#eef0f3;--mut:#9aa1ad;--bd:#2d3036;--ac:#7fb0ff;--chip:#272829;--chipsel:#004f7c}}
 *{box-sizing:border-box}
@@ -15,26 +16,100 @@ h2{font-size:13px;margin:18px 0 8px;color:var(--mut);font-weight:600;text-transf
 .c svg{width:28px;height:28px;color:var(--ac)}.c span{display:block;margin-top:6px;font-size:10.5px;color:var(--mut);overflow:hidden;text-overflow:ellipsis;padding:0 3px}
 #t{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:10px;font-size:13px;opacity:0;transition:.2s;pointer-events:none}
 #t.s{opacity:1}
-</style></head><body>
+</style>
+</head><body>
 <h1>Wicons</h1><p class="sub" id="sub"></p>
 <input id="q" placeholder="Search icons" autocomplete="off">
-<div class="chips" id="chips"></div><div id="out"></div><div id="t"></div>
+<div class="chips" id="chips"></div>
+<div id="out"></div>
+<div id="t"></div>
+
 <script>
-const D={"Actions": {"check": "<path d=\"M5 12l5 5 9-10\"/>", "close": "<path d=\"M6 6l12 12M18 6L6 18\"/>", "plus": "<path d=\"M12 5v14M5 12h14\"/>", "minus": "<path d=\"M5 12h14\"/>", "edit": "<path d=\"M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM14.06 6.19l3.75 3.75\"/>", "trash": "<path d=\"M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14\"/>", "copy": "<path d=\"M9 9h10v10H9zM5 15H4V4h11v1\"/>", "upload": "<path d=\"M12 16V4m0 0l-4 4m4-4l4 4M4 18v2h16v-2\"/>", "download": "<path d=\"M12 4v12m0 0l-4-4m4 4l4-4M4 18v2h16v-2\"/>", "filter": "<path d=\"M4 5h16l-6 8v5l-4 2v-7L4 5z\"/>", "search": "<circle cx=\"11\" cy=\"11\" r=\"5\"/><path d=\"M16 16l5 5\"/>", "share": "<circle cx=\"18\" cy=\"5\" r=\"2\"/><circle cx=\"6\" cy=\"12\" r=\"2\"/><circle cx=\"18\" cy=\"19\" r=\"2\"/><path d=\"M8 11l8-4M8 13l8 4\"/>", "bookmark": "<path d=\"M6 4h12v16l-6-4-6 4V4z\"/>", "star": "<path d=\"M12 2l2.9 6.1L21 9.2l-5 4.7 1.5 6.8L12 0l-5.5 3.3 1.5-6.8L3 9.2l6.1-1.1L12 2z\"/>", "refresh": "<path d=\"M20 11a8 8 0 1 0 2 5M20 4v7h-7\"/>", "flash": "<path d=\"M13 2L5 13h5l-1 9 8-11h-5l1-9z\"/>", "bell": "<path d=\"M12 4a4 4 0 0 1 4 4v3l2 5H6l2-5V8a4 4 0 0 1 4-4zm0 16a2 2 0 0 1-2-2h4a2 2 0 0 1-2 2z\"/>", "play": "<path d=\"M8 5v14l11-7-11-7z\"/>", "pause": "<path d=\"M8 5h3v14H8zm5 0h3v14h-3z\"/>", "unlock": "<rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\"/><path d=\"M8 11V7a4 4 0 0 1 8 0\"/>", "link": "<path d=\"M10 13l4-4m-5 5l-2 2a3 3 0 1 1-4-4l2-2m11 7l2 2a3 3 0 0 1-4 4l-2-2\"/>", "send": "<path d=\"M22 2L11 13m11-11l-7 20-4-9-9-4 20-7z\"/>", "settings": "<path d=\"M12 2v3m0 17v3m9-9h-3M6 12H3m14.4 6.4l-2.1-2.1M9.7 9.7L7.6 7.6m0 8.8l2.1-2.1m6.6-6.6l2.1-2.1M12 8a4 4 0 1 1 0 8a4 4 0 0 1 0-8z\"/>", "home": "<path d=\"M3 11.5L12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-8.5z\"/>", "calendar": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M8 3v4M16 3v4M3 10h18\"/>", "flag": "<path d=\"M4 21V4h11l1 3h4v10h-9l-1-3H4z\"/>", "globe": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18\"/>", "image": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><circle cx=\"9\" cy=\"10\" r=\"2\"/><path d=\"M21 15l-5-5-8 8\"/>", "folder": "<path d=\"M3 7h5l2 2h11v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z\"/>", "mail": "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"M3 7l9 6 9-6\"/>", "user": "<circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 20c1.7-3 4.1-4.5 8-4.5s6.3 1.5 8 4.5\"/>", "message": "<path d=\"M4 6h16v10H7l-3 3V6z\"/>", "cart": "<circle cx=\"9\" cy=\"18\" r=\"1\"/><circle cx=\"18\" cy=\"18\" r=\"1\"/><path d=\"M3 4h2l2.4 9.4a1 1 0 0 0 1 .8H17a1 1 0 0 0 1-.8L20 7H6\"/>", "heart": "<path d=\"M12 21s-8.5-4.9-9.5-10C1.7 7.6 4 4 7.7 4c2 0 3.1 1 4.3 2.4C13.2 5 14.3 4 16.3 4c3.7 0 6 3.6 5.2 7-1 5.1-9.5 10-9.5 10z\"/>", "camera": "<path d=\"M4 8h3l2-3h6l2 3h3a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2z\"/><circle cx=\"12\" cy=\"13\" r=\"4\"/>", "lock": "<rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\"/><path d=\"M8 11V8a4 4 0 0 1 8 0v3\"/>", "battery": "<rect x=\"2\" y=\"7\" width=\"18\" height=\"10\" rx=\"2\"/><path d=\"M22 10h2v4h-2M6 10h10v4H6z\"/>", "wifi": "<path d=\"M5 12a15 15 0 0 1 14 0M9 16a9 9 0 0 1 6 0M13 20a3 3 0 0 1-2 0\"/>", "music": "<path d=\"M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm11-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z\"/>", "video": "<rect x=\"3\" y=\"6\" width=\"12\" height=\"12\" rx=\"2\"/><path d=\"M15 10l6-4v12l-6-4z\"/>", "shield": "<path d=\"M12 2l7 3v6c0 5-3.4 8.5-7 10-3.6-1.5-7-5-7-10V5l7-3z\"/>", "tag": "<path d=\"M20 10l-8 8-8-8V3h7l9 9z\"/><circle cx=\"9\" cy=\"9\" r=\"1.5\"/>"},
-"UI actions": {"copy": "<path d=\"M9 9h10v10H9zM5 15H4V4h11v1\"/>", "maximize": "<path d=\"M4 4h16v16H4zM8 8h8v8H8z\"/>", "minimize": "<path d=\"M4 14h16M4 4h16M10 4v16\"/>", "expand": "<path d=\"M8 8h8v8H8zM4 4l4 4M20 20l-4-4M4 20l4-4M20 4l-4 4\"/>", "close": "<path d=\"M6 6l12 12M18 6L6 18\"/>", "check": "<path d=\"M5 12l5 5 9-10\"/>", "arrow-right": "<path d=\"M5 12h14M13 5l7 7-7 7\"/>", "arrow-left": "<path d=\"M19 12H5M11 5l-7 7 7 7\"/>", "arrow-up": "<path d=\"M12 19V5M5 12l7-7 7 7\"/>", "arrow-down": "<path d=\"M12 5v14M19 12l-7 7-7-7\"/>", "menu": "<path d=\"M4 7h16M4 12h16M4 17h16\"/>", "grid": "<rect x=\"3\" y=\"3\" width=\"6\" height=\"6\" rx=\"1\"/><rect x=\"15\" y=\"3\" width=\"6\" height=\"4\" rx=\"1\"/><rect x=\"3\" y=\"15\" width=\"10\" height=\"6\" rx=\"1\"/><rect x=\"15\" y=\"11\" width=\"6\" height=\"10\" rx=\"1\"/>"}},
-"Travel": {"plane": "<path d=\"M2 16l20-8-20-8 4 8-4 8zm8-8l2 6\"/>", "train": "<rect x=\"4\" y=\"3\" width=\"16\" height=\"16\" rx=\"2\"/><path d=\"M8 7h8M9 11h6M7 19l-2 2m12-2l2 2\"/>", "car": "<path d=\"M5 16l1.5-6h11l1.5 6M7 16a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm14 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0M7 10V7a2 2 0 0 1 2-2h6l2 3v2\"/>", "hotel": "<path d=\"M4 19V5h16v14M7 9h2m8 0h2M7 14h10\"/>", "map": "<path d=\"M9 4l6 2 6-2v16l-6 2-6-2-6 2V6l6-2zM9 4v16M15 6v16\"/>", "pin": "<path d=\"M12 21s6-5.5 6-11a6 6 0 1 0-12 0c0 5.5 6 11 6 11zm0-9a2 2 0 1 1 0-4 2 2 0 0 1 0 4z\"/>", "suitcase": "<rect x=\"3\" y=\"7\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"/>", "ticket": "<path d=\"M3 8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-3a2 2 0 1 0 0-4V8zM8 8v8M16 8v8\"/>", "luggage": "<rect x=\"4\" y=\"6\" width=\"16\" height=\"14\" rx=\"2\"/><path d=\"M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M4 12h16\"/>", "compass": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M15 9l-2.5 5.5L7 17l2.5-5.5L15 9z\"/>", "location": "<path d=\"M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11zM12 11.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z\"/>"}};
-const S=b=>'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">'+b+'</svg>';
-const total=Object.values(D).reduce((a,o)=>a+Object.keys(o).length,0);
-document.getElementById('sub').textContent=total+' outline icons · '+Object.keys(D).length+' categories · 24px · tap to copy SVG';
-function toast(m){const t=document.getElementById('t');t.textContent=m;t.classList.add('s');setTimeout(()=>t.classList.remove('s'),1200)}
-function chips(){const el=document.getElementById('chips');el.innerHTML='';['All',...Object.keys(D)].forEach(k=>{const b=document.createElement('button');b.className='chip'+(k===cat?' on':'');b.textContent=(k===cat?'✓ ':'')+k;b.onclick=()=>{cat=k;chips();draw()};el.appendChild(b)})}
-function draw(){const q=document.getElementById('q').value.trim().toLowerCase();const out=document.getElementById('out');out.innerHTML='';
- for(const [k,icons] of Object.entries(D)){if(cat!=='All'&&cat!==k)continue;
-  const names=Object.keys(icons).filter(n=>!q||n.includes(q)||k.toLowerCase().includes(q));if(!names.length)continue;
-  const h=document.createElement('h2');h.textContent=k+' · '+names.length;out.appendChild(h);
-  const g=document.createElement('div');g.className='g';
-  names.forEach(n=>{const b=document.createElement('button');b.className='c';b.innerHTML=S(icons[n])+'<span>'+n+'</span>';
-   b.onclick=async()=>{try{await navigator.clipboard.writeText(S(icons[n]));toast('Copied wicons-'+n)}catch(e){toast('wicons-'+n)}};g.appendChild(b)});
-  out.appendChild(g)}}
-document.getElementById('q').oninput=draw;let cat='All';chips();draw();
-</script></body></html>
+const D = {
+  Actions: {
+    check: '<path d="M5 12l5 5 9-10"/>',
+    close: '<path d="M6 6l12 12M18 6L6 18"/>',
+    plus: '<path d="M12 5v14M5 12h14"/>',
+    minus: '<path d="M5 12h14"/>',
+    edit: '<path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM14.06 6.19l3.75 3.75"/>',
+    trash: '<path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/>',
+    search: '<circle cx="11" cy="11" r="5"/><path d="M16 16l5 5"/>'
+  },
+  Social: {
+    heart: '<path d="M12 21s-8.5-4.9-9.5-10C1.7 7.6 4 4 7.7 4c2 0 3.1 1 4.3 2.4C13.2 5 14.3 4 16.3 4c3.7 0 6 3.6 5.2 7-1 5.1-9.5 10-9.5 10z"/>',
+    star: '<path d="M12 2l2.9 6.1L21 9.2l-5 4.7 1.5 6.8L12 2l-5.5 3.3 1.5-6.8L3 9.2l6.1-1.1L12 2z"/>',
+    user: '<circle cx="12" cy="8" r="4"/><path d="M4 20c1.7-3 4.1-4.5 8-4.5s6.3 1.5 8 4.5"/>'
+  },
+  Travel: {
+    pin: '<path d="M12 21s6-5.5 6-11a6 6 0 1 0-12 0c0 5.5 6 11 6 11zm0-9a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>',
+    plane: '<path d="M2 16l20-8-20-8 4 8-4 8zm8-8l2 6"/>',
+    car: '<path d="M5 16l1.5-6h11l1.5 6M7 16a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm14 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0M7 10V7a2 2 0 0 1 2-2h6l2 3v2"/>'
+  }
+};
+
+const S = b => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">' + b + '</svg>';
+const total = Object.values(D).reduce((a, o) => a + Object.keys(o).length, 0);
+document.getElementById('sub').textContent = total + ' outline icons · ' + Object.keys(D).length + ' categories · 24px · tap to copy SVG';
+
+function toast(m) {
+  const t = document.getElementById('t');
+  t.textContent = m;
+  t.classList.add('s');
+  setTimeout(() => t.classList.remove('s'), 1200);
+}
+
+let cat = 'All';
+
+function chips() {
+  const el = document.getElementById('chips');
+  el.innerHTML = '';
+  ['All', ...Object.keys(D)].forEach(k => {
+    const b = document.createElement('button');
+    b.className = 'chip' + (k === cat ? ' on' : '');
+    b.textContent = (k === cat ? '✓ ' : '') + k;
+    b.onclick = () => { cat = k; chips(); draw(); };
+    el.appendChild(b);
+  });
+}
+
+function draw() {
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  const out = document.getElementById('out');
+  out.innerHTML = '';
+
+  for (const [k, icons] of Object.entries(D)) {
+    if (cat !== 'All' && cat !== k) continue;
+    const names = Object.keys(icons).filter(n => !q || n.includes(q) || k.toLowerCase().includes(q));
+    if (!names.length) continue;
+
+    const h = document.createElement('h2');
+    h.textContent = k + ' · ' + names.length;
+    out.appendChild(h);
+
+    const g = document.createElement('div');
+    g.className = 'g';
+
+    names.forEach(n => {
+      const b = document.createElement('button');
+      b.className = 'c';
+      b.innerHTML = S(icons[n]) + '<span>' + n + '</span>';
+      b.onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(S(icons[n]));
+          toast('Copied wicons-' + n);
+        } catch (e) {
+          toast('wicons-' + n);
+        }
+      };
+      g.appendChild(b);
+    });
+
+    out.appendChild(g);
+  }
+}
+
+document.getElementById('q').oninput = draw;
+chips();
+draw();
+</script>
+</body></html>
