@@ -1,7 +1,7 @@
 {
  "name": "Wicons",
  "version": "0.10.0",
- "count": 422,
+ "count": 440,
  "categories": [
   {
    "name": "Actions",
@@ -419,6 +419,24 @@
     "parking",
     "gas-station",
     "ferry"
+    "local-shipping",
+    "directions-car",
+    "flight",
+    "directions-run",
+    "directions-walk",
+    "takeoff",
+    "directions-bus",
+    "airport-shuttle",
+    "pedal-bike",
+    "directions-boat",
+    "two-wheeler",
+    "agriculture",
+    "local-taxi",
+    "sailing",
+    "electric-car",
+    "flight-land",
+    "hail",
+    "commute"
    ]
   },
   {
